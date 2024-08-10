@@ -43,3 +43,21 @@
     If your language provides methods in the standard library to deal with prime numbers, pretend they don't exist and implement them yourself.
 
     Remember that while people commonly count with 1-based indexing (i.e. "the 6th prime is 13"), many programming languages, including Rust, use 0-based indexing (i.e. primes[5] == 13). Use 0-based indexing for your implementation.
+
+5) ## `Blackjack_game()` Instruction
+    ![card => value table](./blackjack.jpeg)
+    Note: Commonly, aces can take the value of 1 or 11 but for simplicity we will assume that they can only take the value of 11.
+
+    Depending on your two cards and the card of the dealer, there is a strategy for the first turn of the game, in which you have the following options:
+
+    Stand (S)
+    Hit (H)
+    Split (P)
+    Automatically win (W)
+    Although not optimal yet, you will follow the strategy your friend Alex has been developing, which is as follows:
+
+    If you have a pair of aces you must always split them.
+    If you have a Blackjack (two cards that sum up to a value of 21), and the dealer does not have an ace, a figure or a ten then you automatically win. If the dealer does have any of those cards then you'll have to stand and wait for the reveal of the other card.
+    If your cards sum up to a value within the range [17, 20] you should always stand.
+    If your cards sum up to a value within the range [12, 16] you should always stand unless the dealer has a 7 or higher, in which case you should always hit.
+    If your cards sum up to 11 or lower you should always hit.
