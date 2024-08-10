@@ -45,7 +45,8 @@
     Remember that while people commonly count with 1-based indexing (i.e. "the 6th prime is 13"), many programming languages, including Rust, use 0-based indexing (i.e. primes[5] == 13). Use 0-based indexing for your implementation.
 
 5) ## `Blackjack_game()` Instruction
-    ![card => value table](./blackjack.jpeg)
+    <img src="./blackjack.jpeg" alt="Alt text" width="300"/>
+    
     Note: Commonly, aces can take the value of 1 or 11 but for simplicity we will assume that they can only take the value of 11.
 
     Depending on your two cards and the card of the dealer, there is a strategy for the first turn of the game, in which you have the following options:
