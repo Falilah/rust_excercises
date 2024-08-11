@@ -41,6 +41,10 @@ pub fn nth_prime(n: u32) -> u32 {
     }
 }
 
+// fn first_turn(card1:str, card2: str, dealer: str) -> str{
+//     dealer
+// }
+
 
 #[test]
 fn test_prime_factor(){
