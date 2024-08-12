@@ -66,3 +66,21 @@
     - If your cards sum up to a value within the range [17, 20] you should always stand.
     - If your cards sum up to a value within the range [12, 16] you should always stand unless the dealer has a 7 or higher, in which case you should always hit.
     - If your cards sum up to 11 or lower you should always hit.
+
+6) ## Beer song `verse()` and `sing()` Instruction
+    Recite the lyrics to that beloved classic, that field-trip favorite: 99 Bottles of Beer on the Wall.
+
+ example: 
+ 
+    3 bottles of beer on the wall, 3 bottles of beer.
+    Take one down and pass it around, 2 bottles of beer on the wall.
+
+    2 bottles of beer on the wall, 2 bottles of beer.
+    Take one down and pass it around, 1 bottle of beer on the wall.
+
+    1 bottle of beer on the wall, 1 bottle of beer.
+    Take it down and pass it around, no more bottles of beer on the wall.
+
+    No more bottles of beer on the wall, no more bottles of beer.
+    Go to the store and buy some more, 99 bottles of beer on the wall.
+
