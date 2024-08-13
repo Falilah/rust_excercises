@@ -82,6 +82,29 @@ pub fn sing(start: u32, end: u32) -> String {
      poem
 }
 
+pub fn reply(message: &str) -> &str {
+    // todo!("have Bob reply to the incoming message: {message}")
+       let size = message.len();
+
+    let que = &message[size -1..] == "?";
+    let yell = message.chars().all(|c| !c.is_lowercase());
+    if  que && yell{
+        "Calm down, I know what I'm doing!"
+    }
+    else if que{
+        "Sure." 
+    }
+          else if message.trim().len() == 0{
+        "Fine. Be that way!"
+    }
+    else if yell{
+        "Whoa, chill out!"
+    }
+    else{
+        "Whatever."
+    }
+}
+
 
 #[test]
 fn test_prime_factor(){
