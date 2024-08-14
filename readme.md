@@ -84,7 +84,7 @@
     No more bottles of beer on the wall, no more bottles of beer.
     Go to the store and buy some more, 99 bottles of beer on the wall.
 
-7) ## `reply()` Instruction => In Progress
+7) ## `reply()` Instruction
 Bob is a lackadaisical teenager. He likes to think that he's very cool. And he definitely doesn't get excited about things. That wouldn't be cool.
 
 When people talk to him, his responses are pretty limited.

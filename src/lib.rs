@@ -84,20 +84,19 @@ pub fn sing(start: u32, end: u32) -> String {
 
 pub fn reply(message: &str) -> &str {
     // todo!("have Bob reply to the incoming message: {message}")
-       let size = message.len();
-
-    let que = &message[size -1..] == "?";
-    let yell = message.chars().all(|c| !c.is_lowercase());
-    if  que && yell{
+    let has_alphabetic = message.chars().any(|c| c.is_alphabetic());
+    let que: bool = message.chars().rev().find(|&c| !c.is_whitespace()).map_or(false, |c| c == '?');
+    let yell = message.chars().filter(|c| c.is_alphabetic()).all(|c| c.is_uppercase());
+    if que && yell && has_alphabetic{
         "Calm down, I know what I'm doing!"
     }
     else if que{
-        "Sure." 
-    }
-          else if message.trim().len() == 0{
+            "Sure."
+         }
+    else if (message.trim()).len() == 0{
         "Fine. Be that way!"
     }
-    else if yell{
+     else if has_alphabetic && yell{
         "Whoa, chill out!"
     }
     else{
@@ -132,6 +131,14 @@ fn test_poem(){
 
     assert_eq!(sing(8, 6), "8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n\n7 bottles of beer on the wall, 7 bottles of beer.\nTake one down and pass it around, 6 bottles of beer on the wall.\n\n6 bottles of beer on the wall, 6 bottles of beer.\nTake one down and pass it around, 5 bottles of beer on the wall.\n");
 
+}
+#[test]
+fn test_reply(){
+    assert_eq!(reply("WATCH OUT!"), "Whoa, chill out!");
+    assert_eq!(reply("4?"), "Sure.");
+    assert_eq!(reply("1, 2, 3"), "Whatever.");
+    assert_eq!(reply(":) ?"), "Sure.");
+    assert_eq!(reply("          "), "Fine. Be that way!");
 
 
 }
