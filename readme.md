@@ -99,3 +99,8 @@ Bob only ever answers one of five things:
 - "Calm down, I know what I'm doing!" This is what he says if you yell a question at him.
 - "Fine. Be that way!" This is how he responds to silence. The convention used for silence is nothing, or various combinations of whitespace characters.
 - "Whatever." This is what he answers to anything else.
+
+8)  ## Instructions  classic Frogger game => In Progress
+    Manage a game player's High Score list.
+
+    Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
