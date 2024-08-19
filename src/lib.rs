@@ -104,44 +104,63 @@ pub fn reply(message: &str) -> &str {
     }
 }
 
+fn main() {
+    let string = "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \
+                 \\end{array}\\right)";
+    let arr: bool = brackets_are_balanced(string);
+    println!("{:?}", arr);
+}
+
 pub fn brackets_are_balanced(string: &str) -> bool {
     // todo!("Check if the string \"{string}\" contains balanced brackets");
-    let arr: Vec<char> = string[0..]
-        .chars()
-        .filter(|&c| c == '{' || c == '}' || c == '(' || c == ')' || c == '[' || c == ']')
-        .collect();
-    
+    let arr: Vec<char> = getbrs(string);
+    println!("{:?}", arr);
+
     if arr.len() % 2 > 0 {
         return false;
-    } else if arr.len() == 0 {
+    } else if arr.is_empty() {
         return true;
     }
     let mut finalstate = false;
+    
     for (i, ch) in arr.iter().enumerate() {
+        println!("{}", ch);
+
         if i + 1 == arr.len() / 2 && arr.len() != 2 || i == arr.len() - 1 {
             break;
         }
-        if i > 1 && i + 1 % 2 != 0 {
+        else if i > 1 && i + 1 % 2 != 0 {
             continue;
         }
-        if ch == &'{' && arr[arr.len() - (i + 1)] == '}' || ch == &'{' && arr[i + 1] == '}' {
+        else if get_balance(ch, &i, &arr) {
             finalstate = true;
-            println!("true")
-        } else if ch == &'[' && arr[arr.len() - (i + 1)] == ']' || ch == &'[' && arr[i + 1] == ']' {
-            finalstate = true;
-            println!("true")
-        } else if ch == &'(' && arr[arr.len() - (i + 1)] == ')' || ch == &'(' && arr[i + 1] == ')' {
-            finalstate = true;
-            println!("true")
+
         } else {
             finalstate = false;
-            println!("false");
+            
             break;
         }
     }
 
     finalstate
 }
+
+fn getbrs(string: &str) -> Vec<char>{
+    string[0..]
+        .chars()
+        .filter(|&c| c == '{' || c == '}' || c == '(' || c == ')' || c == '[' || c == ']')
+        .collect()
+}
+
+fn get_balance(ch: &char, i: &usize, br:&[char]) -> bool{
+    match ch {
+        &'{' => br[br.len() - (i + 1)] == '}' ||  br[i + 1] == '}',
+        &'[' => br[br.len() - (i + 1)] == ']' ||  br[i + 1] == ']',
+        &'(' => br[br.len() - (i + 1)] == ')' ||  br[i + 1] == ')',
+        _ => false
+    }
+}
+
 
 
 
