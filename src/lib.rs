@@ -104,35 +104,46 @@ pub fn reply(message: &str) -> &str {
     }
 }
 
-
-
-#[derive(Debug)]
-pub struct HighScores{
-        scores: [u32],
+pub fn brackets_are_balanced(string: &str) -> bool {
+    // todo!("Check if the string \"{string}\" contains balanced brackets");
+    let arr: Vec<char> = string[0..]
+        .chars()
+        .filter(|&c| c == '{' || c == '}' || c == '(' || c == ')' || c == '[' || c == ']')
+        .collect();
+    
+    if arr.len() % 2 > 0 {
+        return false;
+    } else if arr.len() == 0 {
+        return true;
+    }
+    let mut finalstate = false;
+    for (i, ch) in arr.iter().enumerate() {
+        if i + 1 == arr.len() / 2 && arr.len() != 2 || i == arr.len() - 1 {
+            break;
+        }
+        if i > 1 && i + 1 % 2 != 0 {
+            continue;
+        }
+        if ch == &'{' && arr[arr.len() - (i + 1)] == '}' || ch == &'{' && arr[i + 1] == '}' {
+            finalstate = true;
+            println!("true")
+        } else if ch == &'[' && arr[arr.len() - (i + 1)] == ']' || ch == &'[' && arr[i + 1] == ']' {
+            finalstate = true;
+            println!("true")
+        } else if ch == &'(' && arr[arr.len() - (i + 1)] == ')' || ch == &'(' && arr[i + 1] == ')' {
+            finalstate = true;
+            println!("true")
+        } else {
+            finalstate = false;
+            println!("false");
+            break;
+        }
     }
 
-impl HighScores {
-    pub fn new(scores: &[u32]) -> Self {
-        // todo!("Construct a HighScores struct, given the scores: {scores:?}")
-        Self{score: *scores,}
-    }
-
-    pub fn scores(&self) -> &[u32] {
-        todo!("Return all the scores as a slice")
-    }
-
-    pub fn latest(&self) -> Option<u32> {
-        todo!("Return the latest (last) score")
-    }
-
-    pub fn personal_best(&self) -> Option<u32> {
-        todo!("Return the highest score")
-    }
-
-    pub fn personal_top_three(&self) -> Vec<u32> {
-        todo!("Return 3 highest scores")
-    }
+    finalstate
 }
+
+
 
 
 
@@ -171,5 +182,20 @@ fn test_reply(){
     assert_eq!(reply(":) ?"), "Sure.");
     assert_eq!(reply("          "), "Fine. Be that way!");
 
+
+}
+
+#[test]
+
+fn test_brackets_are_balanced() {
+    assert!(!brackets_are_balanced("[["));
+    assert!(!brackets_are_balanced("}{"));
+
+    let input = "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \
+    \\end{array}\\right)";
+    assert!(brackets_are_balanced(input));
+
+    assert!(!brackets_are_balanced("{]"));
+    assert!(brackets_are_balanced(""));
 
 }
