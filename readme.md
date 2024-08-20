@@ -105,7 +105,7 @@
 
     Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
 
-    9) ## Instruction Matching Bracket `brackets_are_balanced()`
+9) ## Instruction Matching Bracket `brackets_are_balanced()`
 
     **Introduction**
     You're given the opportunity to write software for the Bracketeer™, an ancient but powerful mainframe. The software that runs on it is written in a proprietary language. Much of its syntax is familiar, but you notice lots of brackets, braces and parentheses. Despite the Bracketeer™ being powerful, it lacks flexibility. If the source code has any unbalanced brackets, braces or parentheses, the Bracketeer™ crashes and must be rebooted. To avoid such a scenario, you start writing code that can verify that brackets, braces, and parentheses are balanced before attempting to run it on the Bracketeer™.
@@ -113,3 +113,27 @@
     **Instructions**
 
     Given a string containing brackets [], braces {}, parentheses (), or any combination thereof, verify that any and all pairs are matched and nested correctly. Any other characters should be ignored. For example, `"{what is (42)}?"` is balanced and `"[text}"` is not.
+
+
+10) # `collatz()` Instruction
+    The Collatz Conjecture or 3x+1 problem can be summarized as follows:
+
+    Take any positive integer n. If n is even, divide n by 2 to get n / 2. If n is odd, multiply n by 3 and add 1 to get 3n + 1. Repeat the process indefinitely. The conjecture states that no matter which number you start with, you will always reach 1 eventually.
+
+    Given a number n, return the number of steps required to reach 1.
+
+    Examples
+    Starting with n = 12, the steps would be as follows:
+
+    1. 12
+    2. 6
+    3. 3
+    4. 10
+    5. 5
+    6. 16
+    7. 8
+    8. 4
+    9. 2
+    10. 1
+
+    Resulting in 9 steps. So for input n = 12, the return value would be 9.

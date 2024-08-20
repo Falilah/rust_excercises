@@ -122,7 +122,7 @@ pub fn brackets_are_balanced(string: &str) -> bool {
         return true;
     }
     let mut finalstate = false;
-    
+
     for (i, ch) in arr.iter().enumerate() {
         println!("{}", ch);
 
@@ -159,6 +159,25 @@ fn get_balance(ch: &char, i: &usize, br:&[char]) -> bool{
         &'(' => br[br.len() - (i + 1)] == ')' ||  br[i + 1] == ')',
         _ => false
     }
+}
+
+pub fn collatz(n: u64) -> Option<u64> {
+    if n == 0 {
+      return None
+    }
+    let mut n: u64 = n;
+    let mut counter: u64 = 0;
+    while n > 1 {
+        if n % 2 == 0{
+            n = n /2;
+        }
+        else{
+            n = (n * 3) + 1;
+        }
+        counter += 1;
+
+    }
+    Some(counter)
 }
 
 
@@ -216,5 +235,26 @@ fn test_brackets_are_balanced() {
 
     assert!(!brackets_are_balanced("{]"));
     assert!(brackets_are_balanced(""));
+
+}
+
+#[test]
+
+fn test_collatz() {
+    let output = collatz(1);
+    let expected = Some(0);
+    assert_eq!(output, expected);
+
+    let output = collatz(16);
+    let expected = Some(4);
+    assert_eq!(output, expected);
+
+    let output = collatz(1_000_000);
+    let expected = Some(152);
+    assert_eq!(output, expected);
+
+    let output = collatz(0);
+    let expected = None;
+    assert_eq!(output, expected);
 
 }
