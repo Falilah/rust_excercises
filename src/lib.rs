@@ -1,4 +1,8 @@
 use isprime::check_prime;
+use rand::{thread_rng, Rng};
+use num_bigint::BigUint;
+use num_traits::FromPrimitive;
+
 
 fn prime_factors(n: u64) -> Vec<u64> {
     // todo!("This should calculate the prime factors of {n}")
@@ -104,13 +108,6 @@ pub fn reply(message: &str) -> &str {
     }
 }
 
-fn main() {
-    let string = "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \
-                 \\end{array}\\right)";
-    let arr: bool = brackets_are_balanced(string);
-    println!("{:?}", arr);
-}
-
 pub fn brackets_are_balanced(string: &str) -> bool {
     // todo!("Check if the string \"{string}\" contains balanced brackets");
     let arr: Vec<char> = getbrs(string);
@@ -179,6 +176,7 @@ pub fn collatz(n: u64) -> Option<u64> {
     }
     Some(counter)
 }
+
 
 
 

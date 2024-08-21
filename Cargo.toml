@@ -5,3 +5,6 @@ edition = "2021"
 
 [dependencies]
 isprime = "0.1.1"
+num-bigint = { version = "0.4", features = ["rand"] }
+num-traits = "0.2"
+rand = "0.8.5"
