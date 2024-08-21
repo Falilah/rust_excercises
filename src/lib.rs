@@ -176,8 +176,30 @@ pub fn collatz(n: u64) -> Option<u64> {
     }
     Some(counter)
 }
+pub fn private_key(p: u64) -> u64 {
+    // todo!("Pick a private key greater than 1 and less than {p}")
+    if !check_prime(p){
+        panic!("Not a prime numer")
+    }
+    thread_rng().gen_range(2..p)
 
+}
 
+pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
+    // todo!("Calculate public key using prime numbers {p} and {g}, and private key {a}")
+    
+    let mut num =  BigUint::from_u64(g).unwrap();
+    num = num.pow(a as u32);
+    (num % (p as usize)).try_into().unwrap()
+}
+
+pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
+    // todo!("Calculate secret key using prime number {p}, public key {b_pub}, and private key {a}")
+
+    let mut b_num =  BigUint::from_u64(b_pub).unwrap();
+    b_num = b_num.pow(a as u32);
+    (b_num % (p as usize)).try_into().unwrap()
+}
 
 
 
@@ -254,5 +276,24 @@ fn test_collatz() {
     let output = collatz(0);
     let expected = None;
     assert_eq!(output, expected);
+
+}
+
+#[test]
+
+fn test_secret() {
+    let p: u64 = 13;
+    let g: u64 = 11;
+    
+    let private_key_a = private_key(p);
+    let private_key_b = private_key(p);
+    
+    let public_key_a = public_key(p, g, private_key_a);
+    let public_key_b = public_key(p, g, private_key_b);
+
+    // Key exchange
+let secret_a = secret(p, public_key_b, private_key_a);
+let secret_b = secret(p, public_key_a, private_key_b);
+assert_eq!(secret_a, secret_b);
 
 }
