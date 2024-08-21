@@ -187,18 +187,24 @@ pub fn private_key(p: u64) -> u64 {
 
 pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
     // todo!("Calculate public key using prime numbers {p} and {g}, and private key {a}")
+    let g = BigUint::from_u64(g).unwrap();
+    let p = BigUint::from_u64(p).unwrap();
+    let a = BigUint::from_u64(a).unwrap();
+
+    let result = g.modpow(&a, &p);
     
-    let mut num =  BigUint::from_u64(g).unwrap();
-    num = num.pow(a as u32);
-    (num % (p as usize)).try_into().unwrap()
+    result.try_into().unwrap()
 }
 
 pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
     // todo!("Calculate secret key using prime number {p}, public key {b_pub}, and private key {a}")
+    let b_pub: BigUint = BigUint::from_u64(b_pub).unwrap();
+    let p = BigUint::from_u64(p).unwrap();
+    let a = BigUint::from_u64(a).unwrap();
 
-    let mut b_num =  BigUint::from_u64(b_pub).unwrap();
-    b_num = b_num.pow(a as u32);
-    (b_num % (p as usize)).try_into().unwrap()
+    let result = b_pub.modpow(&a, &p);
+    
+    result.try_into().unwrap()
 }
 
 
