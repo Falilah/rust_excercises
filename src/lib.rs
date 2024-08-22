@@ -209,6 +209,24 @@ pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
 
 
 
+pub fn series(digits: &str, len: usize) -> Vec<String> {
+    let mut result = Vec::new();
+      let size = digits.len();
+      if size >= len{
+      for i in 0..size{
+          let val = &digits[i..(len + i)];
+          result.push(String::from(val));
+  
+          if i + len == size{
+              break;
+          }
+      }
+  }
+      result
+  }
+
+
+
 
 
 #[test]
@@ -301,5 +319,33 @@ fn test_secret() {
 let secret_a = secret(p, public_key_b, private_key_a);
 let secret_b = secret(p, public_key_a, private_key_b);
 assert_eq!(secret_a, secret_b);
+
+}
+
+#[test]
+fn test_series(){
+    let input = "1";
+    let length = 1;
+    let expected = &["1"];
+    assert_eq!(series(input, length), expected);
+    let input = "777777";
+    let length = 3;
+    let expected = &["777", "777", "777", "777"];
+    assert_eq!(series(input, length), expected);
+
+    let input = "918493904243";
+    let length = 5;
+    let output = series(input, length);
+    let expected = &[
+        "91849", "18493", "84939", "49390", "93904", "39042", "90424", "04243",
+    ];
+    assert_eq!(output, expected);
+
+    let input = "12345";
+    let length = 6;
+    let output = series(input, length);
+    let expected: &[&str] = &[];
+    assert_eq!(output, expected);
+
 
 }
