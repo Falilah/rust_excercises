@@ -211,6 +211,51 @@ pub fn series(digits: &str, len: usize) -> Vec<String> {
     result
 }
 
+pub fn plants(diagram: &str, student: &str) -> Vec<&'static str> {
+    let diagram: Vec<&str> = diagram.split_whitespace().collect();
+    let position: (usize, usize) = get_position(&student[..1]);
+    let mut result = Vec::new();
+    for i in diagram{
+        let x = &i[position.0 ..=  position.1];
+        result.push(get_plant(&x[..=0]));
+        result.push(get_plant(&x[x.len() - 1..]));
+    }
+    result
+
+
+
+}
+fn get_position(student: &str) -> (usize, usize)  {
+    match student {
+        "A" => (0, 1),
+        "B" => (2,3),
+        "C" => (4,5),
+        "D" => (6, 7),
+        "E" => (8,9),
+        "F" => (10, 11),
+        "G" => (12, 13),
+        "H" => (14, 15),
+        "I" => (16, 17),
+        "J" => (18, 19),
+        "K" => (20, 21),
+        "L" => (22, 23),
+        _ => (0,0)
+    }
+}
+
+
+    fn get_plant(plant: &str) -> &'static str {
+        match plant {
+            "G" => "grass",
+            "C" => "clover",
+            "R" => "radishes",
+            "V" => "violets",
+            _ => "",
+        }
+
+
+}
+
 #[test]
 fn test_prime_factor() {
     assert_eq!(prime_factors(100), [2, 2, 5, 5]);
