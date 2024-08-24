@@ -1,47 +1,44 @@
 use isprime::check_prime;
-use rand::{thread_rng, Rng};
 use num_bigint::BigUint;
 use num_traits::FromPrimitive;
-
+use rand::{thread_rng, Rng};
 
 fn prime_factors(n: u64) -> Vec<u64> {
     // todo!("This should calculate the prime factors of {n}")
     let mut all_prime = Vec::new();
     let mut num: u64 = n;
-    loop{
-    for i in 2..(num + 1){
-        if check_prime(i) == true {
-            if num % i == 0{
-                num = num / i;
-                all_prime.push(i);
-                break;
-            }else{
-                continue
+    loop {
+        for i in 2..(num + 1) {
+            if check_prime(i) == true {
+                if num % i == 0 {
+                    num = num / i;
+                    all_prime.push(i);
+                    break;
+                } else {
+                    continue;
+                }
             }
         }
+        if num == 1 {
+            break;
+        }
     }
-    if num == 1{
-        break;
-    }
-}
     all_prime
-    
 }
 
 pub fn nth_prime(n: u32) -> u32 {
     // todo!("What is the 0-indexed {n}th prime number?")
-    let mut count:u32 = 0;
-    let mut index:u32 = 0;
+    let mut count: u32 = 0;
+    let mut index: u32 = 0;
 
-    loop{
-        if check_prime(index as u64){
+    loop {
+        if check_prime(index as u64) {
             count += 1;
-            if count - 1 == n{
+            if count - 1 == n {
                 return index as u32;
             }
         }
-        index +=1;
-        
+        index += 1;
     }
 }
 
@@ -51,59 +48,56 @@ pub fn nth_prime(n: u32) -> u32 {
 
 pub fn verse(n: u32) -> String {
     // todo!("emit verse {n}")
-    let mut v= String::new();
-    if n == 0{
+    let mut v = String::new();
+    if n == 0 {
         v = format!("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n")
-    }
-    else if n - 1 != 0{
-        if n-1 == 1{
+    } else if n - 1 != 0 {
+        if n - 1 == 1 {
             v = format!("{} bottles of beer on the wall, {} bottles of beer.\nTake one down and pass it around, {} bottle of beer on the wall.\n", n , n , n -1);
-        }
-        else {
+        } else {
             v = format!("{} bottles of beer on the wall, {} bottles of beer.\nTake one down and pass it around, {} bottles of beer on the wall.\n", n , n , n -1);
         }
-    }
-    else{
-     v = format!("{} bottle of beer on the wall, {} bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n", n, n);
-     
+    } else {
+        v = format!("{} bottle of beer on the wall, {} bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n", n, n);
     }
     v
-    
 }
 
 pub fn sing(start: u32, end: u32) -> String {
     // todo!("sing verses {start} to {end}, inclusive")
     let mut poem = String::new();
-    let val = start +1;
-    for i in (end..val).rev()  {
-        if i == end{
+    let val = start + 1;
+    for i in (end..val).rev() {
+        if i == end {
             poem.push_str(&format!("{}", verse(i)))
-       }
-       else{
-       poem.push_str(&format!("{}\n", verse(i)));
-       }
+        } else {
+            poem.push_str(&format!("{}\n", verse(i)));
+        }
     }
-     poem
+    poem
 }
 
 pub fn reply(message: &str) -> &str {
     // todo!("have Bob reply to the incoming message: {message}")
     let has_alphabetic = message.chars().any(|c| c.is_alphabetic());
-    let que: bool = message.chars().rev().find(|&c| !c.is_whitespace()).map_or(false, |c| c == '?');
-    let yell = message.chars().filter(|c| c.is_alphabetic()).all(|c| c.is_uppercase());
-    if que && yell && has_alphabetic{
+    let que: bool = message
+        .chars()
+        .rev()
+        .find(|&c| !c.is_whitespace())
+        .map_or(false, |c| c == '?');
+    let yell = message
+        .chars()
+        .filter(|c| c.is_alphabetic())
+        .all(|c| c.is_uppercase());
+    if que && yell && has_alphabetic {
         "Calm down, I know what I'm doing!"
-    }
-    else if que{
-            "Sure."
-         }
-    else if (message.trim()).len() == 0{
+    } else if que {
+        "Sure."
+    } else if (message.trim()).len() == 0 {
         "Fine. Be that way!"
-    }
-     else if has_alphabetic && yell{
+    } else if has_alphabetic && yell {
         "Whoa, chill out!"
-    }
-    else{
+    } else {
         "Whatever."
     }
 }
@@ -125,16 +119,13 @@ pub fn brackets_are_balanced(string: &str) -> bool {
 
         if i + 1 == arr.len() / 2 && arr.len() != 2 || i == arr.len() - 1 {
             break;
-        }
-        else if i > 1 && i + 1 % 2 != 0 {
+        } else if i > 1 && i + 1 % 2 != 0 {
             continue;
-        }
-        else if get_balance(ch, &i, &arr) {
+        } else if get_balance(ch, &i, &arr) {
             finalstate = true;
-
         } else {
             finalstate = false;
-            
+
             break;
         }
     }
@@ -142,47 +133,44 @@ pub fn brackets_are_balanced(string: &str) -> bool {
     finalstate
 }
 
-fn getbrs(string: &str) -> Vec<char>{
+fn getbrs(string: &str) -> Vec<char> {
     string[0..]
         .chars()
         .filter(|&c| c == '{' || c == '}' || c == '(' || c == ')' || c == '[' || c == ']')
         .collect()
 }
 
-fn get_balance(ch: &char, i: &usize, br:&[char]) -> bool{
+fn get_balance(ch: &char, i: &usize, br: &[char]) -> bool {
     match ch {
-        &'{' => br[br.len() - (i + 1)] == '}' ||  br[i + 1] == '}',
-        &'[' => br[br.len() - (i + 1)] == ']' ||  br[i + 1] == ']',
-        &'(' => br[br.len() - (i + 1)] == ')' ||  br[i + 1] == ')',
-        _ => false
+        &'{' => br[br.len() - (i + 1)] == '}' || br[i + 1] == '}',
+        &'[' => br[br.len() - (i + 1)] == ']' || br[i + 1] == ']',
+        &'(' => br[br.len() - (i + 1)] == ')' || br[i + 1] == ')',
+        _ => false,
     }
 }
 
 pub fn collatz(n: u64) -> Option<u64> {
     if n == 0 {
-      return None
+        return None;
     }
     let mut n: u64 = n;
     let mut counter: u64 = 0;
     while n > 1 {
-        if n % 2 == 0{
-            n = n /2;
-        }
-        else{
+        if n % 2 == 0 {
+            n = n / 2;
+        } else {
             n = (n * 3) + 1;
         }
         counter += 1;
-
     }
     Some(counter)
 }
 pub fn private_key(p: u64) -> u64 {
     // todo!("Pick a private key greater than 1 and less than {p}")
-    if !check_prime(p){
+    if !check_prime(p) {
         panic!("Not a prime numer")
     }
     thread_rng().gen_range(2..p)
-
 }
 
 pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
@@ -192,7 +180,7 @@ pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
     let a = BigUint::from_u64(a).unwrap();
 
     let result = g.modpow(&a, &p);
-    
+
     result.try_into().unwrap()
 }
 
@@ -203,44 +191,35 @@ pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
     let a = BigUint::from_u64(a).unwrap();
 
     let result = b_pub.modpow(&a, &p);
-    
+
     result.try_into().unwrap()
 }
 
-
-
 pub fn series(digits: &str, len: usize) -> Vec<String> {
     let mut result = Vec::new();
-      let size = digits.len();
-      if size >= len{
-      for i in 0..size{
-          let val = &digits[i..(len + i)];
-          result.push(String::from(val));
-  
-          if i + len == size{
-              break;
-          }
-      }
-  }
-      result
-  }
+    let size = digits.len();
+    if size >= len {
+        for i in 0..size {
+            let val = &digits[i..(len + i)];
+            result.push(String::from(val));
 
-
-
-
-
-#[test]
-fn test_prime_factor(){
-    assert_eq!(prime_factors(100), [2, 2, 5, 5]);
-    assert_eq!(prime_factors(60), [2, 2, 3, 5]);
-    assert_eq!(prime_factors(75), [3, 5, 5]);
-
-
-
+            if i + len == size {
+                break;
+            }
+        }
+    }
+    result
 }
 
 #[test]
-fn test_nth_prime(){
+fn test_prime_factor() {
+    assert_eq!(prime_factors(100), [2, 2, 5, 5]);
+    assert_eq!(prime_factors(60), [2, 2, 3, 5]);
+    assert_eq!(prime_factors(75), [3, 5, 5]);
+}
+
+#[test]
+fn test_nth_prime() {
     assert_eq!(nth_prime(10000), 104743);
     assert_eq!(nth_prime(60), 283);
     assert_eq!(nth_prime(7), 19);
@@ -248,23 +227,20 @@ fn test_nth_prime(){
 }
 
 #[test]
-fn test_poem(){
+fn test_poem() {
     assert_eq!(verse(0), "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 
     assert_eq!(sing(3, 0), "3 bottles of beer on the wall, 3 bottles of beer.\nTake one down and pass it around, 2 bottles of beer on the wall.\n\n2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n\n1 bottle of beer on the wall, 1 bottle of beer.\nTake it down and pass it around, no more bottles of beer on the wall.\n\nNo more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n");
 
     assert_eq!(sing(8, 6), "8 bottles of beer on the wall, 8 bottles of beer.\nTake one down and pass it around, 7 bottles of beer on the wall.\n\n7 bottles of beer on the wall, 7 bottles of beer.\nTake one down and pass it around, 6 bottles of beer on the wall.\n\n6 bottles of beer on the wall, 6 bottles of beer.\nTake one down and pass it around, 5 bottles of beer on the wall.\n");
-
 }
 #[test]
-fn test_reply(){
+fn test_reply() {
     assert_eq!(reply("WATCH OUT!"), "Whoa, chill out!");
     assert_eq!(reply("4?"), "Sure.");
     assert_eq!(reply("1, 2, 3"), "Whatever.");
     assert_eq!(reply(":) ?"), "Sure.");
     assert_eq!(reply("          "), "Fine. Be that way!");
-
-
 }
 
 #[test]
@@ -279,7 +255,6 @@ fn test_brackets_are_balanced() {
 
     assert!(!brackets_are_balanced("{]"));
     assert!(brackets_are_balanced(""));
-
 }
 
 #[test]
@@ -300,7 +275,6 @@ fn test_collatz() {
     let output = collatz(0);
     let expected = None;
     assert_eq!(output, expected);
-
 }
 
 #[test]
@@ -308,22 +282,21 @@ fn test_collatz() {
 fn test_secret() {
     let p: u64 = 13;
     let g: u64 = 11;
-    
+
     let private_key_a = private_key(p);
     let private_key_b = private_key(p);
-    
+
     let public_key_a = public_key(p, g, private_key_a);
     let public_key_b = public_key(p, g, private_key_b);
 
     // Key exchange
-let secret_a = secret(p, public_key_b, private_key_a);
-let secret_b = secret(p, public_key_a, private_key_b);
-assert_eq!(secret_a, secret_b);
-
+    let secret_a = secret(p, public_key_b, private_key_a);
+    let secret_b = secret(p, public_key_a, private_key_b);
+    assert_eq!(secret_a, secret_b);
 }
 
 #[test]
-fn test_series(){
+fn test_series() {
     let input = "1";
     let length = 1;
     let expected = &["1"];
@@ -346,6 +319,4 @@ fn test_series(){
     let output = series(input, length);
     let expected: &[&str] = &[];
     assert_eq!(output, expected);
-
-
 }
