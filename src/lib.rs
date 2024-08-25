@@ -3,8 +3,10 @@ use num_bigint::BigUint;
 use num_traits::FromPrimitive;
 use rand::{thread_rng, Rng};
 
+//  1)
+
 fn prime_factors(n: u64) -> Vec<u64> {
-    // todo!("This should calculate the prime factors of {n}")
+   
     let mut all_prime = Vec::new();
     let mut num: u64 = n;
     loop {
@@ -27,7 +29,6 @@ fn prime_factors(n: u64) -> Vec<u64> {
 }
 
 pub fn nth_prime(n: u32) -> u32 {
-    // todo!("What is the 0-indexed {n}th prime number?")
     let mut count: u32 = 0;
     let mut index: u32 = 0;
 
@@ -42,12 +43,8 @@ pub fn nth_prime(n: u32) -> u32 {
     }
 }
 
-// fn first_turn(card1:str, card2: str, dealer: str) -> str{
-//     dealer
-// }
-
+// 6
 pub fn verse(n: u32) -> String {
-    // todo!("emit verse {n}")
     let mut v = String::new();
     if n == 0 {
         v = format!("No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n")
@@ -64,7 +61,7 @@ pub fn verse(n: u32) -> String {
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    // todo!("sing verses {start} to {end}, inclusive")
+    
     let mut poem = String::new();
     let val = start + 1;
     for i in (end..val).rev() {
@@ -78,7 +75,6 @@ pub fn sing(start: u32, end: u32) -> String {
 }
 
 pub fn reply(message: &str) -> &str {
-    // todo!("have Bob reply to the incoming message: {message}")
     let has_alphabetic = message.chars().any(|c| c.is_alphabetic());
     let que: bool = message
         .chars()
@@ -103,7 +99,6 @@ pub fn reply(message: &str) -> &str {
 }
 
 pub fn brackets_are_balanced(string: &str) -> bool {
-    // todo!("Check if the string \"{string}\" contains balanced brackets");
     let arr: Vec<char> = getbrs(string);
     println!("{:?}", arr);
 
@@ -166,7 +161,6 @@ pub fn collatz(n: u64) -> Option<u64> {
     Some(counter)
 }
 pub fn private_key(p: u64) -> u64 {
-    // todo!("Pick a private key greater than 1 and less than {p}")
     if !check_prime(p) {
         panic!("Not a prime numer")
     }
@@ -174,7 +168,6 @@ pub fn private_key(p: u64) -> u64 {
 }
 
 pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
-    // todo!("Calculate public key using prime numbers {p} and {g}, and private key {a}")
     let g = BigUint::from_u64(g).unwrap();
     let p = BigUint::from_u64(p).unwrap();
     let a = BigUint::from_u64(a).unwrap();
@@ -185,7 +178,6 @@ pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
 }
 
 pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
-    // todo!("Calculate secret key using prime number {p}, public key {b_pub}, and private key {a}")
     let b_pub: BigUint = BigUint::from_u64(b_pub).unwrap();
     let p = BigUint::from_u64(p).unwrap();
     let a = BigUint::from_u64(a).unwrap();
