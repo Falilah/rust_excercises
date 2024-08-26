@@ -247,6 +247,33 @@ fn get_position(student: &str) -> (usize, usize)  {
 
 
 }
+pub fn egg_count(display_value: u32) -> usize {
+    // todo!("count the eggs in {display_value}")
+    let bin = dec_to_bin(display_value);
+
+    let mut count: usize = 0;
+    for i in bin.chars(){
+
+        if i == '1'{
+            count += 1;
+        }
+        
+    }
+    count
+}
+
+fn dec_to_bin(mut display_value: u32) -> String{
+
+    let mut bin = String::new();
+    while display_value > 0{
+        let re = display_value % 2;
+        bin.push_str(&re.to_string());
+
+        display_value /= 2;
+    }
+    bin.chars().rev().collect()
+
+}
 
 #[test]
 fn test_prime_factor() {
@@ -355,5 +382,16 @@ fn test_series() {
     let length = 6;
     let output = series(input, length);
     let expected: &[&str] = &[];
+    assert_eq!(output, expected);
+}
+#[test]
+fn test_egg_count(){
+    let input = 0;
+    let output = egg_count(input);
+    let expected = 0;
+    assert_eq!(output, expected);
+    let input = 2_000_000_000;
+    let output = egg_count(input);
+    let expected = 13;
     assert_eq!(output, expected);
 }
