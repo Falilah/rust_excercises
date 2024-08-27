@@ -194,102 +194,111 @@ example:
 
 13. ## Kindergarten Garden Instruction `plants()`
 
-      Your task is to, given a diagram, determine which plants each child in the kindergarten class is responsible for.
+    Your task is to, given a diagram, determine which plants each child in the kindergarten class is responsible for.
 
-      There are 12 children in the class:
+    There are 12 children in the class:
 
-      Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid, and Larry.
-      Four different types of seeds are planted:
+    Alice, Bob, Charlie, David, Eve, Fred, Ginny, Harriet, Ileana, Joseph, Kincaid, and Larry.
+    Four different types of seeds are planted:
 
-      | Plant  | Diagram encoding |
-      | ------ | ---------------- |
-      | Grass  | G                |
-      | Clover | C                |
-      | Radish | R                |
-      | Violet | V                |
+    | Plant  | Diagram encoding |
+    | ------ | ---------------- |
+    | Grass  | G                |
+    | Clover | C                |
+    | Radish | R                |
+    | Violet | V                |
 
-      Each child gets four cups, two on each row:
+    Each child gets four cups, two on each row:
 
-      [window][window][window]
+    [window][window][window]
 
-      ........................ # each dot represents a cup
+    ........................ # each dot represents a cup
 
-      ........................
+    ........................
 
-      Their teacher assigns cups to the children alphabetically by their names, which means that Alice comes first and Larry comes last.
+    Their teacher assigns cups to the children alphabetically by their names, which means that Alice comes first and Larry comes last.
 
-      Here is an example diagram representing Alice's plants:
+    Here is an example diagram representing Alice's plants:
 
-      [window][window][window]
+    [window][window][window]
 
-      VR......................
+    VR......................
 
-      RG......................
+    RG......................
 
-      In the first row, nearest the windows, she has a violet and a radish. In the second row she has a radish and some grass.
+    In the first row, nearest the windows, she has a violet and a radish. In the second row she has a radish and some grass.
 
-      Your program will be given the plants from left-to-right starting with the row nearest the windows. From this, it should be able to determine which plants belong to each student.
+    Your program will be given the plants from left-to-right starting with the row nearest the windows. From this, it should be able to determine which plants belong to each student.
 
-      For example, if it's told that the garden looks like so:
+    For example, if it's told that the garden looks like so:
 
-      [window][window][window]
+    [window][window][window]
 
-      VRCGVVRVCGGCCGVRGCVCGCGV
+    VRCGVVRVCGGCCGVRGCVCGCGV
 
-      VRCCCGCRRGVCGCRVVCVGCGCV
+    VRCCCGCRRGVCGCRVVCVGCGCV
 
-      Then if asked for Alice's plants, it should provide:
+    Then if asked for Alice's plants, it should provide:
 
-      Violets, radishes, violets, radishes
-      While asking for Bob's plants would yield:
+    Violets, radishes, violets, radishes
+    While asking for Bob's plants would yield:
 
-      Clover, grass, clover, clover
+    Clover, grass, clover, clover
 
 14) ## Eliud's Eggs Instruction `egg_count()`
-   Your friend Eliud inherited a farm from her grandma Tigist. Her granny was an inventor and had a tendency to build things in an overly complicated manner. The chicken coop has a digital display showing an encoded number representing the positions of all eggs that could be picked up.
+    Your friend Eliud inherited a farm from her grandma Tigist. Her granny was an inventor and had a tendency to build things in an overly complicated manner. The chicken coop has a digital display showing an encoded number representing the positions of all eggs that could be picked up.
 
-   Eliud is asking you to write a program that shows the actual number of eggs in the coop.
+      Eliud is asking you to write a program that shows the actual number of eggs in the coop.
 
-   The position information encoding is calculated as follows:
+      The position information encoding is calculated as follows:
 
-   Scan the potential egg-laying spots and mark down a 1 for an existing egg or a 0 for an empty spot.
-   Convert the number from binary to decimal.
-   Show the result on the display.
+      Scan the potential egg-laying spots and mark down a 1 for an existing egg or a 0 for an empty spot.
+      Convert the number from binary to decimal.
+      Show the result on the display.
 
-   Example 
+      Example
 
-   Chicken Coop:
-   _ _ _ _ _ _ _
-   |E| |E|E| | |E|
+      Chicken Coop:
 
-   Resulting Binary:
+      ---
 
-   1 0 1 1 0 0 1
+      |E| |E|E| | |E|
 
-   Decimal number on the display:
+      Resulting Binary:
 
-   89
+      1 0 1 1 0 0 1
 
-   Actual eggs in the coop:
+      Decimal number on the display:
 
-   4
+      89
 
-   Example 2:
+      Actual eggs in the coop:
 
-   Chicken Coop:
-   _ _ _ _ _ _ _ _
-   | | | |E| | | | | 
+      4
 
-   Resulting Binary:
+      Example 2:
 
-   0 0 0 1 0 0 0 0
+      Chicken Coop:
 
-   Decimal number on the display:
+      ---
 
-   16
+      | | | |E| | | | |
 
-   Actual eggs in the coop:
+      Resulting Binary:
 
-   1
-   
-   Your task is to count the number of 1 bits in the binary representation of a number.
+      0 0 0 1 0 0 0 0
+
+      Decimal number on the display:
+
+      16
+
+      Actual eggs in the coop:
+
+      1
+
+      Your task is to count the number of 1 bits in the binary representation of a number.
+
+15) ## `High_Score` Instructions
+    Manage a game player's High Score list.
+
+      Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.

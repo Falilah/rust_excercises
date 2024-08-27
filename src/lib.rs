@@ -275,6 +275,60 @@ fn dec_to_bin(mut display_value: u32) -> String{
 
 }
 
+#[derive(Debug)]
+pub struct HighScores{
+    score: Vec<u32>
+}
+
+impl HighScores {
+    pub fn new(scores: &[u32]) -> Self {
+       
+        let mut score: Vec<u32> = Vec::new();
+        for &i in scores{
+            score.push(i)
+        }
+        HighScores { score: score }
+    }
+
+    pub fn scores(&self) -> &[u32] {
+       
+        &self.score        
+        
+    }
+
+    pub fn latest(&self) -> Option<u32> {
+        if self.score.is_empty(){
+            return None;
+        }
+
+        let size = self.score.len();
+        let data = self.score.get(size - 1).unwrap();
+        Some(*data)
+    }
+
+    pub fn personal_best(&self) -> Option<u32> {
+        if self.score.is_empty(){
+            return None;
+        }
+        let mut personal_best = &0;
+        for i in &self.score{
+            if i > personal_best{
+                personal_best = i;
+            }
+        }
+        Some(*personal_best)
+    }
+
+    pub fn personal_top_three(&self) -> Vec<u32> {
+        
+        let mut top_scores = self.score.clone();
+        top_scores.sort_unstable_by(|a, b| b.cmp(a));
+        top_scores.into_iter().take(3).collect()
+
+    }
+
+}
+
 #[test]
 fn test_prime_factor() {
     assert_eq!(prime_factors(100), [2, 2, 5, 5]);
@@ -394,4 +448,21 @@ fn test_egg_count(){
     let output = egg_count(input);
     let expected = 13;
     assert_eq!(output, expected);
+}
+
+#[test]
+fn test_high_scores() {
+    let expected = [30, 50, 20, 70];
+    let high_scores = HighScores::new(&expected);
+    assert_eq!(high_scores.scores(), &expected);
+
+    let high_scores = HighScores::new(&[40]);
+    assert_eq!(high_scores.personal_top_three(), vec![40]);
+
+    let high_scores = HighScores::new(&[]);
+    assert_eq!(high_scores.latest(), None);
+
+    let high_scores = HighScores::new(&[]);
+    assert!(high_scores.personal_top_three().is_empty());
+
 }
