@@ -329,6 +329,38 @@ impl HighScores {
 
 }
 
+/// Check a Luhn checksum.
+pub fn is_valid(code: &str) -> bool {
+    // todo!("Is the Luhn checksum for {code} valid?");
+    let digits: Vec<&str> = code.split_whitespace().collect();
+    let digits: Vec<char>= digits.join("").chars().collect();
+    let mut sum = 0;
+    for (i, dig) in digits.iter().rev().enumerate(){
+        
+        match dig.to_digit(10){
+            Some(digit) =>{
+                println!("{}: {}", i, dig);
+                if i % 2 > 0{
+                    let mut val = digit * 2;
+                    if val > 9{
+                        val -= 9;
+                    }
+                    sum += val;
+                }
+                else{
+                    sum += digit;
+                }
+            }  ,
+            None => return false,
+
+        }
+
+    }
+   
+    sum % 10 == 0
+
+}
+
 #[test]
 fn test_prime_factor() {
     assert_eq!(prime_factors(100), [2, 2, 5, 5]);
