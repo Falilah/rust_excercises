@@ -6,7 +6,6 @@ use rand::{thread_rng, Rng};
 //  1)
 
 fn prime_factors(n: u64) -> Vec<u64> {
-   
     let mut all_prime = Vec::new();
     let mut num: u64 = n;
     loop {
@@ -61,7 +60,6 @@ pub fn verse(n: u32) -> String {
 }
 
 pub fn sing(start: u32, end: u32) -> String {
-    
     let mut poem = String::new();
     let val = start + 1;
     for i in (end..val).rev() {
@@ -207,23 +205,20 @@ pub fn plants(diagram: &str, student: &str) -> Vec<&'static str> {
     let diagram: Vec<&str> = diagram.split_whitespace().collect();
     let position: (usize, usize) = get_position(&student[..1]);
     let mut result = Vec::new();
-    for i in diagram{
-        let x = &i[position.0 ..=  position.1];
+    for i in diagram {
+        let x = &i[position.0..=position.1];
         result.push(get_plant(&x[..=0]));
         result.push(get_plant(&x[x.len() - 1..]));
     }
     result
-
-
-
 }
-fn get_position(student: &str) -> (usize, usize)  {
+fn get_position(student: &str) -> (usize, usize) {
     match student {
         "A" => (0, 1),
-        "B" => (2,3),
-        "C" => (4,5),
+        "B" => (2, 3),
+        "C" => (4, 5),
         "D" => (6, 7),
-        "E" => (8,9),
+        "E" => (8, 9),
         "F" => (10, 11),
         "G" => (12, 13),
         "H" => (14, 15),
@@ -231,73 +226,63 @@ fn get_position(student: &str) -> (usize, usize)  {
         "J" => (18, 19),
         "K" => (20, 21),
         "L" => (22, 23),
-        _ => (0,0)
+        _ => (0, 0),
     }
 }
 
-
-    fn get_plant(plant: &str) -> &'static str {
-        match plant {
-            "G" => "grass",
-            "C" => "clover",
-            "R" => "radishes",
-            "V" => "violets",
-            _ => "",
-        }
-
-
+fn get_plant(plant: &str) -> &'static str {
+    match plant {
+        "G" => "grass",
+        "C" => "clover",
+        "R" => "radishes",
+        "V" => "violets",
+        _ => "",
+    }
 }
 pub fn egg_count(display_value: u32) -> usize {
     // todo!("count the eggs in {display_value}")
     let bin = dec_to_bin(display_value);
 
     let mut count: usize = 0;
-    for i in bin.chars(){
-
-        if i == '1'{
+    for i in bin.chars() {
+        if i == '1' {
             count += 1;
         }
-        
     }
     count
 }
 
-fn dec_to_bin(mut display_value: u32) -> String{
-
+fn dec_to_bin(mut display_value: u32) -> String {
     let mut bin = String::new();
-    while display_value > 0{
+    while display_value > 0 {
         let re = display_value % 2;
         bin.push_str(&re.to_string());
 
         display_value /= 2;
     }
     bin.chars().rev().collect()
-
 }
 
 #[derive(Debug)]
-pub struct HighScores{
-    score: Vec<u32>
+pub struct HighScores {
+    score: Vec<u32>,
 }
 
 impl HighScores {
     pub fn new(scores: &[u32]) -> Self {
-       
         let mut score: Vec<u32> = Vec::new();
-        for &i in scores{
+        for &i in scores {
             score.push(i)
         }
         HighScores { score: score }
     }
 
     pub fn scores(&self) -> &[u32] {
-       
-        &self.score        
-        
+        &self.score
     }
 
     pub fn latest(&self) -> Option<u32> {
-        if self.score.is_empty(){
+        if self.score.is_empty() {
             return None;
         }
 
@@ -307,12 +292,12 @@ impl HighScores {
     }
 
     pub fn personal_best(&self) -> Option<u32> {
-        if self.score.is_empty(){
+        if self.score.is_empty() {
             return None;
         }
         let mut personal_best = &0;
-        for i in &self.score{
-            if i > personal_best{
+        for i in &self.score {
+            if i > personal_best {
                 personal_best = i;
             }
         }
@@ -320,45 +305,69 @@ impl HighScores {
     }
 
     pub fn personal_top_three(&self) -> Vec<u32> {
-        
         let mut top_scores = self.score.clone();
         top_scores.sort_unstable_by(|a, b| b.cmp(a));
         top_scores.into_iter().take(3).collect()
-
     }
-
 }
 
 /// Check a Luhn checksum.
 pub fn is_valid(code: &str) -> bool {
     // todo!("Is the Luhn checksum for {code} valid?");
     let digits: Vec<&str> = code.split_whitespace().collect();
-    let digits: Vec<char>= digits.join("").chars().collect();
+    let digits: Vec<char> = digits.join("").chars().collect();
     let mut sum = 0;
-    for (i, dig) in digits.iter().rev().enumerate(){
-        
-        match dig.to_digit(10){
-            Some(digit) =>{
+    for (i, dig) in digits.iter().rev().enumerate() {
+        match dig.to_digit(10) {
+            Some(digit) => {
                 println!("{}: {}", i, dig);
-                if i % 2 > 0{
+                if i % 2 > 0 {
                     let mut val = digit * 2;
-                    if val > 9{
+                    if val > 9 {
                         val -= 9;
                     }
                     sum += val;
-                }
-                else{
+                } else {
                     sum += digit;
                 }
-            }  ,
+            }
             None => return false,
-
         }
-
     }
-   
-    sum % 10 == 0
 
+    sum % 10 == 0
+}
+
+pub fn abbreviate(phrase: &str) -> String {
+    let phrase = phrase.split_whitespace().collect::<Vec<&str>>();
+
+    let mut acr: String = String::new();
+    for i in phrase {
+        let ch = &i[0..1].to_uppercase();
+        if ch.chars().any(|c| c.is_alphabetic()) {
+            acr.push_str(ch);
+            let next = i[1..].chars().next();
+            match next {
+                Some(n) => {
+                    if n.is_ascii_uppercase() {
+                        continue;
+                    }
+                }
+                None => continue,
+            }
+        }
+        for (index, j) in i.chars().enumerate() {
+            if index == 0 || j == '_' {
+                continue;
+            } else if j.is_ascii_uppercase() {
+                acr.push_str(&i[index..index + 1]);
+            } else if j == '-' {
+                println!("{}", j);
+                acr.push_str(&i[index + 1..index + 2].to_uppercase());
+            }
+        }
+    }
+    acr
 }
 
 #[test]
@@ -471,7 +480,7 @@ fn test_series() {
     assert_eq!(output, expected);
 }
 #[test]
-fn test_egg_count(){
+fn test_egg_count() {
     let input = 0;
     let output = egg_count(input);
     let expected = 0;
@@ -496,7 +505,6 @@ fn test_high_scores() {
 
     let high_scores = HighScores::new(&[]);
     assert!(high_scores.personal_top_three().is_empty());
-
 }
 
 #[test]
@@ -507,10 +515,32 @@ fn test_is_valid() {
     assert!(is_valid("095 245 88"));
     assert!(is_valid("234 567 891 234"));
     assert!(is_valid("9999999999 9999999999 9999999999 9999999999"));
+}
 
+#[test]
+fn test_abbreviate() {
+    let input = "First In, First Out";
+    let output = abbreviate(input);
+    let expected = "FIFO";
+    assert_eq!(output, expected);
 
+    let input = "Complementary metal-oxide semiconductor";
+    let output = abbreviate(input);
+    let expected = "CMOS";
+    assert_eq!(output, expected);
 
+    let input = "Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me";
+    let output = abbreviate(input);
+    let expected = "ROTFLSHTMDCOALM";
+    assert_eq!(output, expected);
 
+    let input = "First In, First Out";
+    let output = abbreviate(input);
+    let expected = "FIFO";
+    assert_eq!(output, expected);
 
-
+    let input = "The Road _Not_ Taken";
+    let output = abbreviate(input);
+    let expected = "TRNT";
+    assert_eq!(output, expected);
 }

@@ -246,103 +246,121 @@ example:
     Clover, grass, clover, clover
 
 14) ## Eliud's Eggs Instruction `egg_count()`
+
     Your friend Eliud inherited a farm from her grandma Tigist. Her granny was an inventor and had a tendency to build things in an overly complicated manner. The chicken coop has a digital display showing an encoded number representing the positions of all eggs that could be picked up.
 
-      Eliud is asking you to write a program that shows the actual number of eggs in the coop.
+    Eliud is asking you to write a program that shows the actual number of eggs in the coop.
 
-      The position information encoding is calculated as follows:
+    The position information encoding is calculated as follows:
 
-      Scan the potential egg-laying spots and mark down a 1 for an existing egg or a 0 for an empty spot.
-      Convert the number from binary to decimal.
-      Show the result on the display.
+    Scan the potential egg-laying spots and mark down a 1 for an existing egg or a 0 for an empty spot.
+    Convert the number from binary to decimal.
+    Show the result on the display.
 
-      Example
+    Example
 
-      Chicken Coop:
+    Chicken Coop:
 
-      ---
+    ---
 
-      |E| |E|E| | |E|
+    |E| |E|E| | |E|
 
-      Resulting Binary:
+    Resulting Binary:
 
-      1 0 1 1 0 0 1
+    1 0 1 1 0 0 1
 
-      Decimal number on the display:
+    Decimal number on the display:
 
-      89
+    89
 
-      Actual eggs in the coop:
+    Actual eggs in the coop:
 
-      4
+    4
 
-      Example 2:
+    Example 2:
 
-      Chicken Coop:
+    Chicken Coop:
 
-      ---
+    ---
 
-      | | | |E| | | | |
+    | | | |E| | | | |
 
-      Resulting Binary:
+    Resulting Binary:
 
-      0 0 0 1 0 0 0 0
+    0 0 0 1 0 0 0 0
 
-      Decimal number on the display:
+    Decimal number on the display:
 
-      16
+    16
 
-      Actual eggs in the coop:
+    Actual eggs in the coop:
 
-      1
+    1
 
-      Your task is to count the number of 1 bits in the binary representation of a number.
+    Your task is to count the number of 1 bits in the binary representation of a number.
 
 15) ## `High_Score` Instructions
+
     Manage a game player's High Score list.
 
-      Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
+    Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
 
 16) ## `is_valid()` Luhn ckecsum Instruction
 
-      Given a number determine whether or not it is valid per the Luhn formula.
+    Given a number determine whether or not it is valid per the Luhn formula.
 
-      The Luhn algorithm is a simple checksum formula used to validate a variety of identification numbers, such as credit card numbers and Canadian Social Insurance Numbers.
+    The Luhn algorithm is a simple checksum formula used to validate a variety of identification numbers, such as credit card numbers and Canadian Social Insurance Numbers.
 
-      The task is to check if a given string is valid.
+    The task is to check if a given string is valid.
 
-      Validating a Number
+    Validating a Number
 
-      Strings of length 1 or less are not valid. Spaces are allowed in the input, but they should be stripped before checking. All other non-digit characters are disallowed.
+    Strings of length 1 or less are not valid. Spaces are allowed in the input, but they should be stripped before checking. All other non-digit characters are disallowed.
 
-      Example 1: valid credit card number
+    Example 1: valid credit card number
 
-      4539 3195 0343 6467
+    4539 3195 0343 6467
 
-      The first step of the Luhn algorithm is to double every second digit, starting from the right. We will be doubling
+    The first step of the Luhn algorithm is to double every second digit, starting from the right. We will be doubling
 
-      4539 3195 0343 6467
-      ↑ ↑  ↑ ↑  ↑ ↑  ↑ ↑  (double these)
+    4539 3195 0343 6467
+    ↑ ↑ ↑ ↑ ↑ ↑ ↑ ↑ (double these)
 
-      If doubling the number results in a number greater than 9 then subtract 9 from the product. The results of our doubling:
-      8569 6195 0383 3437
-      Then sum all of the digits:
+    If doubling the number results in a number greater than 9 then subtract 9 from the product. The results of our doubling:
+    8569 6195 0383 3437
+    Then sum all of the digits:
 
-      8+5+6+9+6+1+9+5+0+3+8+3+3+4+3+7 = 80
+    8+5+6+9+6+1+9+5+0+3+8+3+3+4+3+7 = 80
 
-      If the sum is evenly divisible by 10, then the number is valid. This number is valid!
+    If the sum is evenly divisible by 10, then the number is valid. This number is valid!
 
-      Example 2: invalid credit card number
+    Example 2: invalid credit card number
 
-      8273 1232 7352 0569
+    8273 1232 7352 0569
 
-      Double the second digits, starting from the right
+    Double the second digits, starting from the right
 
-      7253 2262 5312 0539
-      Sum the digits
+    7253 2262 5312 0539
+    Sum the digits
 
-      7+2+5+3+2+2+6+2+5+3+1+2+0+5+3+9 = 57
+    7+2+5+3+2+2+6+2+5+3+1+2+0+5+3+9 = 57
 
-      57 is not evenly divisible by 10, so this number is not valid.
+    57 is not evenly divisible by 10, so this number is not valid.
 
-      
+17) ## `abbreviate()` Acronym Instruction
+
+    Convert a phrase to its acronym.
+
+    Techies love their TLA (Three Letter Acronyms)!
+
+    Help generate some jargon by writing a program that converts a long name like Portable Network Graphics to its acronym (PNG).
+
+    Punctuation is handled as follows: hyphens are word separators (like whitespace); all other punctuation can be removed from the input.
+
+    For example:
+
+    | Input                    | Output |
+    | ------------------------ | ------ | ---- |
+    | As Soon As Possible      | ASAP   |
+    | Liquid-crystal display   | LCD    |
+    | Thank George It's Friday | !      | TGIF |
