@@ -498,3 +498,19 @@ fn test_high_scores() {
     assert!(high_scores.personal_top_three().is_empty());
 
 }
+
+#[test]
+fn test_is_valid() {
+    assert!(is_valid("59"));
+    assert!(!is_valid("59%59"));
+    assert!(!is_valid(":9"));
+    assert!(is_valid("095 245 88"));
+    assert!(is_valid("234 567 891 234"));
+    assert!(is_valid("9999999999 9999999999 9999999999 9999999999"));
+
+
+
+
+
+
+}
