@@ -379,62 +379,50 @@ pub enum Error {
 
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
     // todo!("Convert {number:?} from base {from_base} to base {to_base}");
-    if from_base < 2{
+    if from_base < 2 {
         return Err(Error::InvalidInputBase);
-    }
-    else if to_base < 2{
+    } else if to_base < 2 {
         return Err(Error::InvalidOutputBase);
-
     }
-    for i in number.iter(){
-        if i >= & from_base{
+    for i in number.iter() {
+        if i >= &from_base {
             return Err(Error::InvalidDigit(*i));
         }
-
     }
     let ret = covert_to_b_10(number, from_base);
     println!("{:?}", ret);
 
-
-    if to_base != 10{
-     Ok(convert_frm_b_10( &ret, to_base))
-    }
-    else {
+    if to_base != 10 {
+        Ok(convert_frm_b_10(&ret, to_base))
+    } else {
         Ok(ret)
     }
-    
 }
 
-fn covert_to_b_10 ( number: &[u32], from_base: u32) -> Vec<u32>{
+fn covert_to_b_10(number: &[u32], from_base: u32) -> Vec<u32> {
     let mut sum = 0;
-    for (i, b) in number.iter().rev().enumerate(){
+    for (i, b) in number.iter().rev().enumerate() {
         println!("{}", b);
         sum += b * (from_base.pow(i as u32));
     }
     println!("{}", sum);
 
-   let ret =  sum.to_string().chars().collect::<Vec<char>>();
-   let mut n:Vec<u32> = Vec::new();
+    let ret = sum.to_string().chars().collect::<Vec<char>>();
+    let mut n: Vec<u32> = Vec::new();
 
-   for i in ret{
-    n.push(i.to_digit(10).unwrap());
+    for i in ret {
+        n.push(i.to_digit(10).unwrap());
+    }
 
-   }
-   
-
-   n
-  
-
-
+    n
 }
-fn convert_frm_b_10(number: &Vec<u32>,  to_base: u32) -> Vec<u32>{
-
+fn convert_frm_b_10(number: &Vec<u32>, to_base: u32) -> Vec<u32> {
     let mut res = combine(number);
     if res == 0 {
         return vec![0];
     }
     let mut tobase = Vec::new();
-    while res > 0{
+    while res > 0 {
         let rem = res % to_base;
         res /= to_base;
         tobase.push(rem);
@@ -442,19 +430,15 @@ fn convert_frm_b_10(number: &Vec<u32>,  to_base: u32) -> Vec<u32>{
     tobase.reverse();
     println!("{:?}", tobase);
     tobase
-
 }
-fn combine( number: &Vec<u32>) ->  u32{
-
+fn combine(number: &Vec<u32>) -> u32 {
     let mut val = String::new();
-    for i in number{
+    for i in number {
         val.push_str(i.to_string().as_str());
     }
-//    println!("{:?}", val);
+    //    println!("{:?}", val);
 
     val.parse().unwrap()
-
-    
 }
 
 #[test]
@@ -635,62 +619,62 @@ fn test_abbreviate() {
 #[test]
 fn test_convert() {
     let input_base = 2;
-let input_digits = &[1, 0, 1];
-let output_base = 10;
-let output_digits = vec![5];
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Ok(output_digits)
-);
+    let input_digits = &[1, 0, 1];
+    let output_base = 10;
+    let output_digits = vec![5];
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Ok(output_digits)
+    );
 
-let input_base = 10;
-let input_digits = &[4, 2];
-let output_base = 2;
-let output_digits = vec![1, 0, 1, 0, 1, 0];
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Ok(output_digits)
-);
+    let input_base = 10;
+    let input_digits = &[4, 2];
+    let output_base = 2;
+    let output_digits = vec![1, 0, 1, 0, 1, 0];
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Ok(output_digits)
+    );
 
-let input_base = 16;
-let input_digits = &[2, 10];
-let output_base = 3;
-let output_digits = vec![1, 1, 2, 0];
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Ok(output_digits)
-);
+    let input_base = 16;
+    let input_digits = &[2, 10];
+    let output_base = 3;
+    let output_digits = vec![1, 1, 2, 0];
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Ok(output_digits)
+    );
 
-let input_base = 0;
-let input_digits = &[];
-let output_base = 10;
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Err(Error::InvalidInputBase)
-);
+    let input_base = 0;
+    let input_digits = &[];
+    let output_base = 10;
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Err(Error::InvalidInputBase)
+    );
 
-let input_base = 2;
-let input_digits = &[1, 2, 1, 0, 1, 0];
-let output_base = 10;
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Err(Error::InvalidDigit(2))
-);
+    let input_base = 2;
+    let input_digits = &[1, 2, 1, 0, 1, 0];
+    let output_base = 10;
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Err(Error::InvalidDigit(2))
+    );
 
-let input_base = 2;
-let input_digits = &[1, 0, 1, 0, 1, 0];
-let output_base = 1;
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Err(Error::InvalidOutputBase)
-);
+    let input_base = 2;
+    let input_digits = &[1, 0, 1, 0, 1, 0];
+    let output_base = 1;
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Err(Error::InvalidOutputBase)
+    );
 
-let input_base = 2;
-let input_digits = &[1, 0, 1, 0, 1, 0];
-let output_base = 10;
-let output_digits = vec![4, 2];
-assert_eq!(
-    convert(input_digits, input_base, output_base),
-    Ok(output_digits)
-);
+    let input_base = 2;
+    let input_digits = &[1, 0, 1, 0, 1, 0];
+    let output_base = 10;
+    let output_digits = vec![4, 2];
+    assert_eq!(
+        convert(input_digits, input_base, output_base),
+        Ok(output_digits)
+    );
 }
