@@ -101,13 +101,13 @@ example:
    - "Fine. Be that way!" This is how he responds to silence. The convention used for silence is nothing, or various combinations of whitespace characters.
    - "Whatever." This is what he answers to anything else.
 
-8. ## Instructions classic Frogger game => TODO!
+8. ## classic Frogger game Instruction => TODO!
 
    Manage a game player's High Score list.
 
    Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
 
-9. ## Instruction Matching Bracket `brackets_are_balanced()`
+9. ## Matching Bracket `brackets_are_balanced()` Instruction
 
    **Introduction**
    You're given the opportunity to write software for the Bracketeer™, an ancient but powerful mainframe. The software that runs on it is written in a proprietary language. Much of its syntax is familiar, but you notice lots of brackets, braces and parentheses. Despite the Bracketeer™ being powerful, it lacks flexibility. If the source code has any unbalanced brackets, braces or parentheses, the Bracketeer™ crashes and must be rebooted. To avoid such a scenario, you start writing code that can verify that brackets, braces, and parentheses are balanced before attempting to run it on the Bracketeer™.
@@ -165,7 +165,7 @@ example:
 
     The calculations produce the same result! Alice and Bob now share secret s.
 
-12. ## `series()` Instructio
+12. ## `series()` Instruction
 
     Given a string of digits, output all the contiguous substrings of length n in that string in the order that they appear.
 
@@ -192,8 +192,8 @@ example:
     - Return an empty vector.
     - Return a vector containing as many empty strings as the length of the string "digits" plus one. (this has some nice mathematical properties!)
 
-13. ## Kindergarten Garden Instruction `plants()`
-
+13. ## Kindergarten Garden `plants()`
+ Instruction 
     Your task is to, given a diagram, determine which plants each child in the kindergarten class is responsible for.
 
     There are 12 children in the class:
@@ -245,8 +245,7 @@ example:
 
     Clover, grass, clover, clover
 
-14) ## Eliud's Eggs Instruction `egg_count()`
-
+14) ## Eliud's Eggs `egg_count()` Instruction 
     Your friend Eliud inherited a farm from her grandma Tigist. Her granny was an inventor and had a tendency to build things in an overly complicated manner. The chicken coop has a digital display showing an encoded number representing the positions of all eggs that could be picked up.
 
     Eliud is asking you to write a program that shows the actual number of eggs in the coop.
@@ -299,13 +298,13 @@ example:
 
     Your task is to count the number of 1 bits in the binary representation of a number.
 
-15) ## `High_Score` Instructions
+15) ## `High_Score` Instruction
 
     Manage a game player's High Score list.
 
     Your task is to build a high-score component of the classic Frogger game, one of the highest selling and most addictive games of all time, and a classic of the arcade era. Your task is to write methods that return the highest score from the list, the last added score and the three highest scores.
 
-16) ## `is_valid()` Luhn ckecsum Instruction
+16) ##  Luhn ckecsum `is_valid()` Instruction
 
     Given a number determine whether or not it is valid per the Luhn formula.
 
@@ -347,7 +346,7 @@ example:
 
     57 is not evenly divisible by 10, so this number is not valid.
 
-17) ## `abbreviate()` Acronym Instruction
+17) ## Acronym  `abbreviate()` Instruction
 
     Convert a phrase to its acronym.
 
@@ -365,7 +364,7 @@ example:
     | Liquid-crystal display   | LCD    |
     | Thank George It's Friday | !      | TGIF |
 
-18) ## All Your Base Instruction `convert()`
+18) ## All Your Base  `convert()` Instruction
 
     You've just been hired as professor of mathematics. Your first week went well, but something is off in your second week. The problem is that every answer given by your students is wrong! Luckily, your math skills have allowed you to identify the problem: the student answers are correct, but they're all in base 2 (binary)! Amazingly, it turns out that each week, the students use a different base. To help you quickly verify the student answers, you'll be building a tool to translate between bases.
 
