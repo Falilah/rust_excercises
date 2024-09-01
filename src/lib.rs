@@ -3,7 +3,7 @@ use num_bigint::BigUint;
 use num_traits::FromPrimitive;
 use rand::{thread_rng, Rng};
 
-//  1)
+//  3)
 
 fn prime_factors(n: u64) -> Vec<u64> {
     let mut all_prime = Vec::new();
@@ -26,6 +26,7 @@ fn prime_factors(n: u64) -> Vec<u64> {
     }
     all_prime
 }
+// 5)
 
 pub fn nth_prime(n: u32) -> u32 {
     let mut count: u32 = 0;
@@ -71,7 +72,7 @@ pub fn sing(start: u32, end: u32) -> String {
     }
     poem
 }
-
+ // 7)
 pub fn reply(message: &str) -> &str {
     let has_alphabetic = message.chars().any(|c| c.is_alphabetic());
     let que: bool = message
@@ -96,6 +97,7 @@ pub fn reply(message: &str) -> &str {
     }
 }
 
+// 9) 
 pub fn brackets_are_balanced(string: &str) -> bool {
     let arr: Vec<char> = getbrs(string);
     println!("{:?}", arr);
@@ -126,6 +128,8 @@ pub fn brackets_are_balanced(string: &str) -> bool {
     finalstate
 }
 
+// 10) 
+
 fn getbrs(string: &str) -> Vec<char> {
     string[0..]
         .chars()
@@ -142,6 +146,7 @@ fn get_balance(ch: &char, i: &usize, br: &[char]) -> bool {
     }
 }
 
+// 11) 
 pub fn collatz(n: u64) -> Option<u64> {
     if n == 0 {
         return None;
@@ -185,6 +190,7 @@ pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
     result.try_into().unwrap()
 }
 
+// 12)
 pub fn series(digits: &str, len: usize) -> Vec<String> {
     let mut result = Vec::new();
     let size = digits.len();
@@ -201,6 +207,7 @@ pub fn series(digits: &str, len: usize) -> Vec<String> {
     result
 }
 
+// 13)
 pub fn plants(diagram: &str, student: &str) -> Vec<&'static str> {
     let diagram: Vec<&str> = diagram.split_whitespace().collect();
     let position: (usize, usize) = get_position(&student[..1]);
@@ -239,6 +246,8 @@ fn get_plant(plant: &str) -> &'static str {
         _ => "",
     }
 }
+
+// 14)
 pub fn egg_count(display_value: u32) -> usize {
     // todo!("count the eggs in {display_value}")
     let bin = dec_to_bin(display_value);
@@ -268,6 +277,8 @@ pub struct HighScores {
     score: Vec<u32>,
 }
 
+
+// 15)
 impl HighScores {
     pub fn new(scores: &[u32]) -> Self {
         let mut score: Vec<u32> = Vec::new();
@@ -311,7 +322,8 @@ impl HighScores {
     }
 }
 
-/// Check a Luhn checksum.
+
+// 16)
 pub fn is_valid(code: &str) -> bool {
     // todo!("Is the Luhn checksum for {code} valid?");
     let digits: Vec<&str> = code.split_whitespace().collect();
@@ -338,6 +350,7 @@ pub fn is_valid(code: &str) -> bool {
     sum % 10 == 0
 }
 
+// 17)
 pub fn abbreviate(phrase: &str) -> String {
     let phrase = phrase.split_whitespace().collect::<Vec<&str>>();
 
@@ -377,6 +390,8 @@ pub enum Error {
     InvalidDigit(u32),
 }
 
+
+// 18)
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
     // todo!("Convert {number:?} from base {from_base} to base {to_base}");
     if from_base < 2 {
