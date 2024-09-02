@@ -769,3 +769,33 @@ fn test_convert() {
         Ok(output_digits)
     );
 }
+
+
+#[test]
+
+fn test_allergies() {
+    let allergies = Allergies::new(0);
+    assert!(!allergies.is_allergic_to(&Allergen::Peanuts));
+
+    let allergies = Allergies::new(7);
+    assert!(allergies.is_allergic_to(&Allergen::Peanuts));
+
+    let allergies = Allergies::new(255);
+    assert!(allergies.is_allergic_to(&Allergen::Shellfish));
+
+    let allergies = Allergies::new(509).allergies();
+    let expected = &[
+        Allergen::Eggs,
+        Allergen::Shellfish,
+        Allergen::Strawberries,
+        Allergen::Tomatoes,
+        Allergen::Chocolate,
+        Allergen::Pollen,
+        Allergen::Cats,
+    ];
+    assert_eq!(&allergies, expected);
+
+     let allergies = Allergies::new(257).allergies();
+    let expected = &[Allergen::Eggs];
+    assert_eq!(&allergies, expected);
+}
