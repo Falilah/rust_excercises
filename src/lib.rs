@@ -456,6 +456,82 @@ fn combine(number: &Vec<u32>) -> u32 {
     val.parse().unwrap()
 }
 
+#[derive(Debug, PartialEq, Eq)]
+
+pub struct Allergies{
+    score : u32,
+}
+
+#[derive(Debug, PartialEq, Eq)]
+pub enum Allergen {
+    Eggs,
+    Peanuts,
+    Shellfish,
+    Strawberries,
+    Tomatoes,
+    Chocolate,
+    Pollen,
+    Cats,
+}
+
+impl Allergies {
+    pub fn new(score: u32) -> Self {
+        Allergies{score: score}
+    }
+
+    pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
+        let all_in_score = self.allergies();
+        for i in &all_in_score{
+            if i == allergen{
+                return true;
+            }
+        }
+            return false    
+
+    }
+
+    pub fn allergies(&self) -> Vec<Allergen> {
+        let mut score = self.score;
+        let mut all = Vec::new();
+        let mut count  = 8;
+        let mut x; 
+        if self.score > 255{
+            if score % 256 == 0{
+            return  vec![Allergen::Eggs];
+        } else{
+            score = score - 256;
+        }
+         }       
+            while count != 0{
+                count -=1 ;
+                 x = (2 as u32).pow(count);
+                if score >= x{
+                    all.push(score_to_allergies(x));
+                    score -= x;
+                    if score == 0{
+                        break
+                    }
+                }
+        }
+        all.reverse();
+        all
+    }
+}
+
+
+fn score_to_allergies(score: u32) -> Allergen{
+    match score {
+        1 => Allergen::Eggs,
+        2 =>Allergen::Peanuts,
+        4 => Allergen:: Shellfish,
+        8 => Allergen::Strawberries,
+        16 => Allergen::Tomatoes,
+        32 => Allergen::Chocolate,
+        64 => Allergen::Pollen,
+        _ => Allergen::Cats ,        
+    }
+}
+
 #[test]
 fn test_prime_factor() {
     assert_eq!(prime_factors(100), [2, 2, 5, 5]);
