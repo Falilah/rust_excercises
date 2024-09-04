@@ -829,3 +829,19 @@ fn test_allergies() {
     let expected = &[Allergen::Eggs];
     assert_eq!(&allergies, expected);
 }
+
+#[test]
+fn test_find(){
+    assert_eq!(find(&[6], 6), Some(0));
+    assert_eq!(find(&[1, 3, 4, 6, 8, 9, 11], 6), Some(3));
+    assert_eq!(
+        find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 634], 144),
+        Some(9)
+    );
+    assert_eq!(
+        find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377], 21),
+        Some(5)
+    );
+
+
+}
