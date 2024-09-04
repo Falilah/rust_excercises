@@ -532,6 +532,36 @@ fn score_to_allergies(score: u32) -> Allergen{
     }
 }
 
+pub fn find(array: &[i32], key: i32) -> Option<usize> {
+    // todo!(
+    //     "Using the binary search algorithm, find the element '{key}' in the array '{array:?}' and return its index."
+    // );
+    let mut array = array.iter().collect::<Vec<&i32>>();
+    array.sort();
+    let mut  low = 0;
+    let mut high = array.len();
+
+    while high > low{
+        let mid = low + (high - low) /2;
+
+        if array[mid] == &key{
+            return Some(mid);
+        }
+        else if array[mid] < &key{
+            low = mid + 1;
+        }
+        else{
+            high = mid;
+
+        }
+
+    }
+    None
+    
+   
+
+}
+
 #[test]
 fn test_prime_factor() {
     assert_eq!(prime_factors(100), [2, 2, 5, 5]);
