@@ -72,7 +72,7 @@ pub fn sing(start: u32, end: u32) -> String {
     }
     poem
 }
- // 7)
+// 7)
 pub fn reply(message: &str) -> &str {
     let has_alphabetic = message.chars().any(|c| c.is_alphabetic());
     let que: bool = message
@@ -97,7 +97,7 @@ pub fn reply(message: &str) -> &str {
     }
 }
 
-// 9) 
+// 9)
 pub fn brackets_are_balanced(string: &str) -> bool {
     let arr: Vec<char> = getbrs(string);
     println!("{:?}", arr);
@@ -128,7 +128,7 @@ pub fn brackets_are_balanced(string: &str) -> bool {
     finalstate
 }
 
-// 10) 
+// 10)
 
 fn getbrs(string: &str) -> Vec<char> {
     string[0..]
@@ -146,7 +146,7 @@ fn get_balance(ch: &char, i: &usize, br: &[char]) -> bool {
     }
 }
 
-// 11) 
+// 11)
 pub fn collatz(n: u64) -> Option<u64> {
     if n == 0 {
         return None;
@@ -277,7 +277,6 @@ pub struct HighScores {
     score: Vec<u32>,
 }
 
-
 // 15)
 impl HighScores {
     pub fn new(scores: &[u32]) -> Self {
@@ -321,7 +320,6 @@ impl HighScores {
         top_scores.into_iter().take(3).collect()
     }
 }
-
 
 // 16)
 pub fn is_valid(code: &str) -> bool {
@@ -390,7 +388,6 @@ pub enum Error {
     InvalidDigit(u32),
 }
 
-
 // 18)
 pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
     // todo!("Convert {number:?} from base {from_base} to base {to_base}");
@@ -458,8 +455,8 @@ fn combine(number: &Vec<u32>) -> u32 {
 
 #[derive(Debug, PartialEq, Eq)]
 
-pub struct Allergies{
-    score : u32,
+pub struct Allergies {
+    score: u32,
 }
 
 #[derive(Debug, PartialEq, Eq)]
@@ -476,59 +473,57 @@ pub enum Allergen {
 
 impl Allergies {
     pub fn new(score: u32) -> Self {
-        Allergies{score: score}
+        Allergies { score: score }
     }
 
     pub fn is_allergic_to(&self, allergen: &Allergen) -> bool {
         let all_in_score = self.allergies();
-        for i in &all_in_score{
-            if i == allergen{
+        for i in &all_in_score {
+            if i == allergen {
                 return true;
             }
         }
-            return false    
-
+        return false;
     }
 
     pub fn allergies(&self) -> Vec<Allergen> {
         let mut score = self.score;
         let mut all = Vec::new();
-        let mut count  = 8;
-        let mut x; 
-        if self.score > 255{
-            if score % 256 == 0{
-            return  vec![Allergen::Eggs];
-        } else{
-            score = score - 256;
+        let mut count = 8;
+        let mut x;
+        if self.score > 255 {
+            if score % 256 == 0 {
+                return vec![Allergen::Eggs];
+            } else {
+                score = score - 256;
+            }
         }
-         }       
-            while count != 0{
-                count -=1 ;
-                 x = (2 as u32).pow(count);
-                if score >= x{
-                    all.push(score_to_allergies(x));
-                    score -= x;
-                    if score == 0{
-                        break
-                    }
+        while count != 0 {
+            count -= 1;
+            x = (2 as u32).pow(count);
+            if score >= x {
+                all.push(score_to_allergies(x));
+                score -= x;
+                if score == 0 {
+                    break;
                 }
+            }
         }
         all.reverse();
         all
     }
 }
 
-
-fn score_to_allergies(score: u32) -> Allergen{
+fn score_to_allergies(score: u32) -> Allergen {
     match score {
         1 => Allergen::Eggs,
-        2 =>Allergen::Peanuts,
-        4 => Allergen:: Shellfish,
+        2 => Allergen::Peanuts,
+        4 => Allergen::Shellfish,
         8 => Allergen::Strawberries,
         16 => Allergen::Tomatoes,
         32 => Allergen::Chocolate,
         64 => Allergen::Pollen,
-        _ => Allergen::Cats ,        
+        _ => Allergen::Cats,
     }
 }
 
@@ -538,28 +533,21 @@ pub fn find(array: &[i32], key: i32) -> Option<usize> {
     // );
     let mut array = array.iter().collect::<Vec<&i32>>();
     array.sort();
-    let mut  low = 0;
+    let mut low = 0;
     let mut high = array.len();
 
-    while high > low{
-        let mid = low + (high - low) /2;
+    while high > low {
+        let mid = low + (high - low) / 2;
 
-        if array[mid] == &key{
+        if array[mid] == &key {
             return Some(mid);
-        }
-        else if array[mid] < &key{
+        } else if array[mid] < &key {
             low = mid + 1;
-        }
-        else{
+        } else {
             high = mid;
-
         }
-
     }
     None
-    
-   
-
 }
 
 #[test]
@@ -800,7 +788,6 @@ fn test_convert() {
     );
 }
 
-
 #[test]
 
 fn test_allergies() {
@@ -825,13 +812,13 @@ fn test_allergies() {
     ];
     assert_eq!(&allergies, expected);
 
-     let allergies = Allergies::new(257).allergies();
+    let allergies = Allergies::new(257).allergies();
     let expected = &[Allergen::Eggs];
     assert_eq!(&allergies, expected);
 }
 
 #[test]
-fn test_find(){
+fn test_find() {
     assert_eq!(find(&[6], 6), Some(0));
     assert_eq!(find(&[1, 3, 4, 6, 8, 9, 11], 6), Some(3));
     assert_eq!(
@@ -842,6 +829,4 @@ fn test_find(){
         find(&[1, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377], 21),
         Some(5)
     );
-
-
 }
